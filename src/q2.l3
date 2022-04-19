@@ -76,10 +76,10 @@
 (define get
   (lambda (dict k)
     (if (empty? dict)
-      make-error("Key not found")
+      (make-error "Key not found")
       (if (equal? (car (car dict)) k)
-        make-ok((car (cdr dict)))
-        get((cdr dict) k)))))
+        (make-ok (car (cdr dict)))
+        (get (cdr dict) k)))))
 
 (define put
   (lambda (dict k v)
