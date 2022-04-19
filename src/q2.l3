@@ -12,28 +12,35 @@
 
 (define ok?
   (lambda (res)
-    (if (pair? res)
+    (if (not (pair? res))
+      #f
       (if (empty? res)
-       #f
-       (if (equal? (car res) "ok") #t #f))
-    #f)
+        #f
+       (if (equal? (car res) "Ok")
+        #t 
+        #f))
+    )
   )
  )
 
 (define error?
   (lambda (res)
-    (if (pair? res)
+    (if (not (pair? res))
+      #f
       (if (empty? res)
         #f
-        (if (equal? (car res) "Failure") #t #f))
-      #f)
+       (if (equal? (car res) "Failure")
+        #t 
+        #f))
+    )
   )
  )
 
 (define result?
   (lambda (res)
     (if (or (ok? res) (error? res))
-    #t #f)
+    #t
+    #f)
   )
  )
 
@@ -41,7 +48,7 @@
   (lambda (res)
     if((result? res)
       (cdr res)
-      res)
+      (make-error res))
   )
 )
 
