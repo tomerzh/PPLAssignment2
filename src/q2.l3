@@ -53,27 +53,34 @@
 
 (define make-dict
   (lambda ()
-    @TODO
+    '()
   )
 )
 
 (define dict?
   (lambda (e)
-    @TODO
-  )
-)
+    (if (empty? e)
+      #t
+      (if (pair? (car e))
+        (dict? (cdr e))
+        #f))))
+
 
 (define get
   (lambda (dict k)
-    @TODO
-  )
-)
+    (if (empty? dict)
+      make-error("Key not found")
+      (if (equal? (car (car dict)) k)
+        make-ok((car (cdr dict)))
+        get((cdr dict) k)))))
 
 (define put
   (lambda (dict k v)
-    @TODO
-  )
-)
+    (if (empty? dict)
+        dict
+        (if (equal? (car (car dict)) k)
+            (cons (cons k v) cdr dict) 
+            (cons (car dict) (put (cdr dict) k v))))))
 
 (define map-dict
   (lambda (dict f)
