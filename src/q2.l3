@@ -14,11 +14,9 @@
   (lambda (res)
     (if (not (pair? res))
       #f
-      (if (empty? res)
-        #f
-       (if (equal? (car res) "Ok")
+      (if (eq? (car res) "Ok")
         #t 
-        #f))
+        #f)
     )
   )
  )
@@ -27,11 +25,9 @@
   (lambda (res)
     (if (not (pair? res))
       #f
-      (if (empty? res)
-        #f
-       (if (equal? (car res) "Failure")
+      (if (eq? (car res) "Failure")
         #t 
-        #f))
+        #f)
     )
   )
  )
@@ -46,7 +42,7 @@
 
 (define result->val
   (lambda (res)
-    if((result? res)
+    (if (result? res)
       (cdr res)
       (res))
   )
@@ -54,7 +50,12 @@
 
 (define bind 
   (lambda (f)
-    @TODO
+    (lambda (res) 
+      (if (ok? res)
+        (f (result->val res))
+        res
+      )
+    )
   )
 )
 

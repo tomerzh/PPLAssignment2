@@ -59,30 +59,30 @@ describe('Q4 Tests', () => {
      */
     it("Q21a", () => {
         expect(evalP(`(L3`+ q2 + `3)`)).to.deep.equal(makeOk(3));
-        // expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (ok? r1)` + `)`)).to.deep.equal(makeOk(true));
-        // expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (error? r1)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (result? r1)` + `)`)).to.deep.equal(makeOk(true));
-        // expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (result->val r1)` + `)`)).to.deep.equal(makeOk(3));
-        // expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (ok? r2)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (error? r2)` + `)`)).to.deep.equal(makeOk(true));
-        // expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (result? r2)` + `)`)).to.deep.equal(makeOk(true));
-        // expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (result->val r2)` + `)`)).to.deep.equal(makeOk("Error: key not found"));
-        // expect(evalP(`(L3` + q2 + `(define r3 'ok) (ok? r3)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r3 'ok) (error? r3)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r3 'ok) (result? r3)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r3 'error) (ok? r3)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r3 'error) (error? r3)` + `)`)).to.deep.equal(makeOk(false));
-        // expect(evalP(`(L3` + q2 + `(define r3 'error) (result? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (ok? r1)` + `)`)).to.deep.equal(makeOk(true));
+        expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (error? r1)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (result? r1)` + `)`)).to.deep.equal(makeOk(true));
+        expect(evalP(`(L3` + q2 + `(define r1 (make-ok 3)) (result->val r1)` + `)`)).to.deep.equal(makeOk(3));
+        expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (ok? r2)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (error? r2)` + `)`)).to.deep.equal(makeOk(true));
+        expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (result? r2)` + `)`)).to.deep.equal(makeOk(true));
+        expect(evalP(`(L3` + q2 + `(define r2 (make-error "Error: key not found")) (result->val r2)` + `)`)).to.deep.equal(makeOk("Error: key not found"));
+        expect(evalP(`(L3` + q2 + `(define r3 'ok) (ok? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r3 'ok) (error? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r3 'ok) (result? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r3 'error) (ok? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r3 'error) (error? r3)` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + `(define r3 'error) (result? r3)` + `)`)).to.deep.equal(makeOk(false));
     });
 
-    // /**
-    //  * Q2.1--(b) tests
-    //  */
-    // it("Q21b", () => {
-    //     expect(evalP(`(L3` + q2 + q2_test_string + `3)`)).to.deep.equal(makeOk(3));
-    //     expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (inverse-square-inverse 2))` + `)`)).to.deep.equal(makeOk(4));
-    //     expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (inverse-square-inverse 0))` + `)`)).to.deep.equal(makeOk("div by 0"));
-    // });
+    /**
+     * Q2.1--(b) tests
+     */
+    it("Q21b", () => {
+        expect(evalP(`(L3` + q2 + q2_test_string + `3)`)).to.deep.equal(makeOk(3));
+        expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (inverse-square-inverse 2))` + `)`)).to.deep.equal(makeOk(4));
+        expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (inverse-square-inverse 0))` + `)`)).to.deep.equal(makeOk("div by 0"));
+    });
 
     // /**
     //  * Q2.2 tests
