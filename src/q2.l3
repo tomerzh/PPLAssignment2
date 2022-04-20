@@ -111,6 +111,12 @@
 
 (define filter-dict
   (lambda (dict pred)
-    @TODO
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok dict)
+        (if (pred (car (car dict)) (cdr (car dict)))
+          (make-ok (cons (cons (car (car dict)) (cdr (car dict))) (result->val (filter-dict (cdr dict) pred))))
+          (filter-dict (cdr dict) pred))))
   )
 )
