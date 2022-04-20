@@ -101,7 +101,11 @@
 
 (define map-dict
   (lambda (dict f)
-    @TODO
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok dict)
+        (make-ok (cons (cons (car (car dict)) (f (cdr (car dict)))) (result->val (map-dict (cdr dict) f))))))
   )
 )
 

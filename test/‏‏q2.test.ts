@@ -98,13 +98,13 @@ describe('Q4 Tests', () => {
         expect(evalP(`(L3` + q2 + q2_test_string + `(define dict (make-dict)) (result->val (get '(1 2) 1))` + `)`)).to.deep.equal(makeOk("Error: not a dictionary"));
     });
 
-    // /**
-    //  * Q2.3--(a) tests
-    //  */
-    // it("Q23a", () => {
-    //     expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (get (result->val (map-dict (result->val (put (result->val (put (make-dict) 1 #t)) 2 #f)) (lambda (x) (not x )))) 1))` + `)`)).to.deep.equal(makeOk(false));
-    //     expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (get (result->val (map-dict (result->val (put (result->val (put (make-dict) 1 #t)) 2 #f)) (lambda (x) (not x )))) 2))` + `)`)).to.deep.equal(makeOk(true));
-    // });
+    /**
+     * Q2.3--(a) tests
+     */
+    it("Q23a", () => {
+        expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (get (result->val (map-dict (result->val (put (result->val (put (make-dict) 1 #t)) 2 #f)) (lambda (x) (not x )))) 1))` + `)`)).to.deep.equal(makeOk(false));
+        expect(evalP(`(L3` + q2 + q2_test_string + `(result->val (get (result->val (map-dict (result->val (put (result->val (put (make-dict) 1 #t)) 2 #f)) (lambda (x) (not x )))) 2))` + `)`)).to.deep.equal(makeOk(true));
+    });
     
 
     // /**
