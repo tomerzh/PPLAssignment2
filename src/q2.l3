@@ -82,18 +82,22 @@
       (if (empty? dict)
         (make-error "Key not found")
         (if (eq? (car (car dict)) k)
-          (make-ok (car (cdr dict)))
+          (make-ok (cdr (car dict)))
           (get (cdr dict) k))))
   )
 )
 
 (define put
   (lambda (dict k v)
-    (if (empty? dict)
-        dict
-        (if (equal? (car (car dict)) k)
-            (cons (cons k v) cdr dict) 
-            (cons (car dict) (put (cdr dict) k v))))))
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok (cons (cons k v) '()))
+        (if (eq? (car (car dict)) k)
+          (make-ok (cons (cons k v) (cdr dict)))
+          (make-ok (cons (car dict) (result->val (put (cdr dict) k v)))))))
+  )
+)
 
 (define map-dict
   (lambda (dict f)
