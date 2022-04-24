@@ -69,35 +69,54 @@
   (lambda (e)
     (if (empty? e)
       #t
-      (if (pair? (car e))
-        (dict? (cdr e))
-        #f))))
-
+      (if (not (pair? (car e)))
+        #f
+        (dict? (cdr e))))
+  )
+)
 
 (define get
   (lambda (dict k)
-    (if (empty? dict)
-      (make-error "Key not found")
-      (if (equal? (car (car dict)) k)
-        (make-ok (car (cdr dict)))
-        (get (cdr dict) k)))))
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-error "Key not found")
+        (if (eq? (car (car dict)) k)
+          (make-ok (cdr (car dict)))
+          (get (cdr dict) k))))
+  )
+)
 
 (define put
   (lambda (dict k v)
-    (if (empty? dict)
-        dict
-        (if (equal? (car (car dict)) k)
-            (cons (cons k v) cdr dict) 
-            (cons (car dict) (put (cdr dict) k v))))))
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok (cons (cons k v) '()))
+        (if (eq? (car (car dict)) k)
+          (make-ok (cons (cons k v) (cdr dict)))
+          (make-ok (cons (car dict) (result->val (put (cdr dict) k v)))))))
+  )
+)
 
 (define map-dict
   (lambda (dict f)
-    @TODO
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok dict)
+        (make-ok (cons (cons (car (car dict)) (f (cdr (car dict)))) (result->val (map-dict (cdr dict) f))))))
   )
 )
 
 (define filter-dict
   (lambda (dict pred)
-    @TODO
+    (if (not (dict? dict))
+      (make-error "Error: not a dictionary")
+      (if (empty? dict)
+        (make-ok dict)
+        (if (pred (car (car dict)) (cdr (car dict)))
+          (make-ok (cons (cons (car (car dict)) (cdr (car dict))) (result->val (filter-dict (cdr dict) pred))))
+          (filter-dict (cdr dict) pred))))
   )
 )
